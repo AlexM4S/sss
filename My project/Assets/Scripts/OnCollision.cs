@@ -6,7 +6,7 @@ public class OnCollision : MonoBehaviour
 {
     public Character m_char;
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnControllerColliderHit(ControllerColliderHit collision)
     {
         if (collision.transform.tag == "Player")
             return;

@@ -16,7 +16,7 @@ public class Character : MonoBehaviour
 {
 
     public SIDE m_Side = SIDE.Mid;
-    float NewXPos = 0f;
+    
     [HideInInspector]
     public bool SwipeLeft, SwipeRight, SwipeUp, SwipeDown;
     public float XValue;
@@ -34,6 +34,7 @@ public class Character : MonoBehaviour
     public HitX hitX = HitX.None;
     public HitY hitY = HitY.None;
     public HitZ hitZ = HitZ.None;
+    private SIDE LastSide;
    
 
 
@@ -44,6 +45,7 @@ public class Character : MonoBehaviour
         ColCenterY = m_char.center.y;
         m_Animator = GetComponent<Animator>();
         transform.position = Vector3.zero;
+        
     }
 
     // Update is called once per frame
@@ -59,38 +61,55 @@ public class Character : MonoBehaviour
         {
             if(m_Side == SIDE.Mid)
             {
-                NewXPos = -XValue;
+                LastSide = m_Side;
                 m_Side = SIDE.Left;
                 m_Animator.Play("SALTOizd");
+                ResetCollision();
             }
 
             else if(m_Side == SIDE.Right)
             {
-                NewXPos = 0;
+                LastSide = m_Side;
                 m_Side = SIDE.Mid;
                 m_Animator.Play("SALTOizd");
+                ResetCollision();
             }
+            else
+            {
+                LastSide = m_Side;
+                m_Animator.Play("stumble");
+                ResetCollision();
+            }
+            
         }
         else if (SwipeRight&& !InRoll)
         
         {
             if (m_Side == SIDE.Mid)
             {
-                NewXPos = XValue;
+                LastSide = m_Side;
                 m_Side = SIDE.Right;
                 m_Animator.Play("SALTOder");
+                ResetCollision();
             }
 
             else if (m_Side == SIDE.Left)
             {
-                NewXPos = 0;
+                LastSide = m_Side;
                 m_Side = SIDE.Mid;
                 m_Animator.Play("SALTOder");
+                ResetCollision();
+            }
+            else
+            {
+                LastSide = m_Side;
+                m_Animator.Play("stumble");
+                ResetCollision();
             }
         }
 
         Vector3 moveVector = new Vector3(x - transform.position.x, y*Time.deltaTime, ForwardSpeed*Time.deltaTime);
-        x = Mathf.Lerp(x, NewXPos, Time.deltaTime * SpeedDodge);
+        x = Mathf.Lerp(x, (int)m_Side, Time.deltaTime * SpeedDodge);
         m_char.Move(moveVector);
         Jump();
         Roll();
@@ -136,10 +155,10 @@ public class Character : MonoBehaviour
         }
         if (SwipeDown)
         {
-            RollCounter = 0.2f;
+            RollCounter = 0.6f;
             y -= 10f;
-            m_char.center = new Vector3(0, ColCenterY/2f, 0);
-            m_char.height = ColHeight/2f;
+            m_char.center = new Vector3(0, ColCenterY/3f, 0);
+            m_char.height = ColHeight/3f;
             m_Animator.CrossFadeInFixedTime("roll", 0.1f);
             InRoll = true;
             InJump = false;
@@ -156,11 +175,15 @@ public class Character : MonoBehaviour
         {
             if (hitX == HitX.Right)
             {
+                m_Side = LastSide;
                 m_Animator.Play("stumble");
+                ResetCollision();
             }
             else if (hitX == HitX.Left)
             {
+                m_Side = LastSide;
                 m_Animator.Play("stumble");
+                ResetCollision();
             }
         }
 
@@ -171,6 +194,7 @@ public class Character : MonoBehaviour
                 if (hitX == HitX.Mid)
                 {
                     m_Animator.Play("death");
+                    ResetCollision();
                 }
             }
         }
@@ -182,6 +206,7 @@ public class Character : MonoBehaviour
                 if (hitX == HitX.Right)
                 {
                     m_Animator.Play("death");
+                    ResetCollision();
                 }
             }
         }
@@ -193,9 +218,35 @@ public class Character : MonoBehaviour
                 if (hitX == HitX.Left)
                 {
                     m_Animator.Play("death");
+                    ResetCollision();
                 }
             }
         }
+
+        if (hitZ == HitZ.Forward)
+        {
+            if (hitY == HitY.Up)
+            {
+                if (hitX == HitX.Mid)
+                {
+                    m_Animator.Play("death");
+                    ResetCollision();
+
+
+                }
+            }
+        }
+
+       
+
+    }
+
+    private void ResetCollision()
+    {
+        print(hitX.ToString() + hitY.ToString() + hitZ.ToString());
+        hitX = HitX.None;
+        hitY = HitY.None;
+        hitZ = HitZ.None;
     }
 
     public HitX GetHitX(Collider col)
