@@ -155,10 +155,10 @@ public class Character : MonoBehaviour
         }
         if (SwipeDown)
         {
-            RollCounter = 0.6f;
+            RollCounter = 0.5f;
             y -= 10f;
-            m_char.center = new Vector3(0, ColCenterY/3f, 0);
-            m_char.height = ColHeight/3f;
+            m_char.center = new Vector3(0, ColCenterY/5f, 0);
+            m_char.height = ColHeight/5f;
             m_Animator.CrossFadeInFixedTime("roll", 0.1f);
             InRoll = true;
             InJump = false;
@@ -231,15 +231,11 @@ public class Character : MonoBehaviour
                 {
                     m_Animator.Play("death");
                     ResetCollision();
-
-
                 }
             }
         }
 
-
-       
-
+        
     }
 
     private void ResetCollision()
