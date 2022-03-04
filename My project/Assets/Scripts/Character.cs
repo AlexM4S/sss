@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 
@@ -35,6 +36,10 @@ public class Character : MonoBehaviour
     public HitY hitY = HitY.None;
     public HitZ hitZ = HitZ.None;
     private SIDE LastSide;
+
+    public Text Score;
+    public Text LastScore;
+    public Text HighScore;
    
 
 
@@ -45,16 +50,34 @@ public class Character : MonoBehaviour
         ColCenterY = m_char.center.y;
         m_Animator = GetComponent<Animator>();
         transform.position = Vector3.zero;
-        
+
+        LastScore.text = PlayerPrefs.GetFloat("lastScore", 0).ToString();
+        HighScore.text = PlayerPrefs.GetFloat("hScore", 0).ToString();
+
     }
 
-    // Update is called once per frame
+    
+        
+   
     void Update()
     {
         SwipeLeft = Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow);
         SwipeRight = Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow);
         SwipeUp = Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow);
         SwipeDown = Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow);
+
+        float number = transform.position.z;
+        Score.text = number.ToString();
+
+        PlayerPrefs.SetFloat("lastScore", number);
+        PlayerPrefs.SetFloat("hScore", number);
+
+        if (number > PlayerPrefs.GetFloat("hScore", 0))
+        {
+            PlayerPrefs.SetFloat("hScore", number);
+            HighScore.text = number.ToString();
+        }
+
 
 
         if (SwipeLeft&& !InRoll)
