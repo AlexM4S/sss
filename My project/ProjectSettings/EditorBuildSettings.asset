@@ -5,16 +5,25 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: 3e2d8a112d55d5f4188c7cf102d69595
+  - enabled: 1
+    path: Assets/Scenes/Game.unity
+    guid: dc8c9f3efd746429fa6f9482dc779492
+  - enabled: 1
+    path: Assets/Scenes/Ajustes.unity
+    guid: 6eef862e11e499346981747a7cafabfb
+  - enabled: 1
+    path: Assets/Scenes/Controles.unity
+    guid: 5b9cd00a7856e8242a67c017a2c767f2
+  - enabled: 1
+    path: Assets/Scenes/Dificultad.unity
+    guid: a9af273725627ac44b86acb16a648125
+  - enabled: 1
+    path: "Assets/Scenes/M\xFAsica.unity"
+    guid: e16c4e546a56cac4f95dd89e8284e7d1
+  - enabled: 1
+    path: Assets/Scenes/AlPerder.unity
+    guid: c1654f184c863dd4aa0136cbfed446ef
   m_configObjects: {}

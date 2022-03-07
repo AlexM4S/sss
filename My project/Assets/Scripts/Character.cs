@@ -26,7 +26,7 @@ public class Character : MonoBehaviour
     private float x;
     public float SpeedDodge;
     public float JumpPower = 7f;
-    public float ForwardSpeed = 7f;
+    private float ForwardSpeed = 4f;
     private float y;
     public bool InJump;
     public bool InRoll;
@@ -51,8 +51,8 @@ public class Character : MonoBehaviour
         m_Animator = GetComponent<Animator>();
         transform.position = Vector3.zero;
 
-        LastScore.text = PlayerPrefs.GetFloat("lastScore", 0).ToString();
-        HighScore.text = PlayerPrefs.GetFloat("hScore", 0).ToString();
+        LastScore.text = PlayerPrefs.GetInt("lastScore", 0).ToString();
+        HighScore.text = PlayerPrefs.GetInt("hScore", 0).ToString();
 
     }
 
@@ -61,20 +61,26 @@ public class Character : MonoBehaviour
    
     void Update()
     {
+
+        if(GameManager.sharedInstance.isGameOver)
+        {
+            return;
+        }
+
+
         SwipeLeft = Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow);
         SwipeRight = Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow);
         SwipeUp = Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow);
         SwipeDown = Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow);
 
-        float number = transform.position.z;
+        int number = Mathf.FloorToInt(transform.position.z);
         Score.text = number.ToString();
 
-        PlayerPrefs.SetFloat("lastScore", number);
-        PlayerPrefs.SetFloat("hScore", number);
+        PlayerPrefs.SetInt("lastScore", number);
 
-        if (number > PlayerPrefs.GetFloat("hScore", 0))
+        if (number > PlayerPrefs.GetInt("hScore", 0))
         {
-            PlayerPrefs.SetFloat("hScore", number);
+            PlayerPrefs.SetInt("hScore", number);
             HighScore.text = number.ToString();
         }
 
@@ -216,8 +222,7 @@ public class Character : MonoBehaviour
             {
                 if (hitX == HitX.Mid)
                 {
-                    m_Animator.Play("death");
-                    ResetCollision();
+                    PlayDeadAnim();
                 }
             }
         }
@@ -228,8 +233,7 @@ public class Character : MonoBehaviour
             {
                 if (hitX == HitX.Right)
                 {
-                    m_Animator.Play("death");
-                    ResetCollision();
+                    PlayDeadAnim();
                 }
             }
         }
@@ -240,8 +244,7 @@ public class Character : MonoBehaviour
             {
                 if (hitX == HitX.Left)
                 {
-                    m_Animator.Play("death");
-                    ResetCollision();
+                    PlayDeadAnim();
                 }
             }
         }
@@ -252,13 +255,21 @@ public class Character : MonoBehaviour
             {
                 if (hitX == HitX.Mid)
                 {
-                    m_Animator.Play("death");
-                    ResetCollision();
+                    PlayDeadAnim();
                 }
             }
         }
 
         
+    }
+
+
+    void PlayDeadAnim()
+    {
+
+        m_Animator.Play("death");
+        ResetCollision();
+        GameManager.sharedInstance.GoToGameOver();
     }
 
     private void ResetCollision()

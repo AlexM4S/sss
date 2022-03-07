@@ -10,30 +10,44 @@ public class TileManager : MonoBehaviour
     public float tileLength = 6f;
     public int numberOfTiles = 5;
     private List<GameObject> activeTiles = new List<GameObject>();
+    int lastGenerated = 0;
 
     public Transform playerTransform;
     
 
     void Start()
     {
-        for(int i = 0; i < numberOfTiles; i++)
+        for(int i = 0; i <2; i++)
         {
-            if (i == 0)
-                SpawnTile(0);
-            else
-                SpawnTile(Random.Range(0, tilePrefabs.Length));
+            DrawTile(0);
+        }
+
+        for(int i = 2; i < numberOfTiles; i++)
+        {
+            SpawnTile();
         }
     }
     void Update()
     {
         if (playerTransform.position.z - 10 > zSpawn - (numberOfTiles * tileLength))
         {
-            SpawnTile(Random.Range(0, tilePrefabs.Length));
+            SpawnTile();
             DeleteTile();
         }
     }
 
-    public void SpawnTile(int tileIndex)
+    public void SpawnTile()
+    {
+        int tileIndex = Random.Range(0, tilePrefabs.Length);
+        while (lastGenerated == tileIndex)
+        {
+            tileIndex = Random.Range(0, tilePrefabs.Length);
+        }
+        lastGenerated = tileIndex;
+        DrawTile(tileIndex);
+    }
+
+    void DrawTile(int tileIndex)
     {
         GameObject go = Instantiate(tilePrefabs[tileIndex], transform.forward * zSpawn, transform.rotation);
         activeTiles.Add(go);
