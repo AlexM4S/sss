@@ -8,5 +8,6 @@ public class DesdeMenu : MonoBehaviour
     public void BackMenu()
     {
         SceneManager.LoadScene("Menu");
+        Time.timeScale = 1f;
     }
 }

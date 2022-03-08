@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Trigger
   - obstacle
+  - audio
   layers:
   - Default
   - TransparentFX

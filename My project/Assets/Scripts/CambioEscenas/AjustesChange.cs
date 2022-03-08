@@ -15,6 +15,7 @@ public class AjustesChange : MonoBehaviour
     public void EmpezarJuego()
     {
         SceneManager.LoadScene("Game");
+        Time.timeScale = 1f;
     }
 
     public void Salir()
