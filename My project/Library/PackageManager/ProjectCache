@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637811119299233986
-    m_Hash: 3556311312
+      ticks: 637825953968711525
+    m_Hash: 3213806186
   m_LockFileStatus:
     m_FilePath: D:/AlexBenejam/Proyectos_multimedia/SS/My project/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637811119299755923
-    m_Hash: 1668868329
+      ticks: 637825953969253934
+    m_Hash: 2245968341
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_PackageAssets:
@@ -858,6 +858,99 @@ m_PackageAssets:
         url: https://github.cds.internal.unity3d.com/unity/iet-package.git
         revision: d8844989d65f92c6dede187e8149d129ac4f6a41
         path: 
+    - packageId: com.unity.postprocessing@3.1.1
+      testable: 0
+      isDirectDependency: 1
+      version: 3.1.1
+      source: 1
+      resolvedPath: D:\AlexBenejam\Proyectos_multimedia\SS\My project\Library\PackageCache\com.unity.postprocessing@3.1.1
+      assetPath: Packages/com.unity.postprocessing
+      name: com.unity.postprocessing
+      displayName: Post Processing
+      author:
+        name: 
+        email: 
+        url: 
+      category: 
+      type: 
+      description: The post-processing stack (v2) comes with a collection of effects
+        and image filters you can apply to your cameras to improve the visuals of
+        your games.
+      status: 4
+      errors: []
+      versions:
+        all:
+        - 0.1.7
+        - 0.1.8
+        - 2.0.0-beta
+        - 2.0.1-beta
+        - 2.0.2-preview
+        - 2.0.3-preview
+        - 2.0.5-preview
+        - 2.0.7-preview
+        - 2.0.8-preview
+        - 2.0.9-preview
+        - 2.0.10-preview
+        - 2.0.11-preview
+        - 2.0.12-preview
+        - 2.0.13-preview
+        - 2.0.14-preview
+        - 2.0.15-preview
+        - 2.0.16-preview
+        - 2.0.17-preview
+        - 2.1.0
+        - 2.1.1
+        - 2.1.2
+        - 2.1.3
+        - 2.1.4
+        - 2.1.5
+        - 2.1.6
+        - 2.1.7
+        - 2.2.1
+        - 2.2.2
+        - 2.3.0
+        - 3.0.1
+        - 3.0.3
+        - 3.1.0
+        - 3.1.1
+        - 3.2.0
+        - 3.2.1
+        compatible:
+        - 2.3.0
+        - 3.0.1
+        - 3.0.3
+        - 3.1.0
+        - 3.1.1
+        - 3.2.0
+        - 3.2.1
+        verified: 3.1.1
+      dependencies:
+      - name: com.unity.modules.physics
+        version: 1.0.0
+      resolvedDependencies:
+      - name: com.unity.modules.physics
+        version: 1.0.0
+      keywords: []
+      registry:
+        id: main
+        name: 
+        url: https://packages.unity.com
+        scopes: []
+        isDefault: 1
+        capabilities: 7
+      hasRegistry: 1
+      hideInEditor: 1
+      entitlements:
+        isAllowed: 1
+      isAssetStorePackage: 0
+      datePublishedTicks: 637576678760000000
+      documentationUrl: 
+      hasRepository: 1
+      repository:
+        type: git
+        url: git+https://github.com/Unity-Technologies/Graphics.git
+        revision: 075b452f2c4bf910a168632b3cedbd6835477ddd
+        path: 
     - packageId: com.unity.probuilder@4.5.2
       testable: 0
       isDirectDependency: 1
@@ -1324,6 +1417,7 @@ m_PackageAssets:
         - 2.1.6
         - 2.2.0-preview.1
         - 2.2.0-preview.2
+        - 2.2.0-preview.3
         - 3.0.0-preview.1
         - 3.0.0-preview.3
         - 3.0.0-preview.4
@@ -1343,11 +1437,13 @@ m_PackageAssets:
         - 3.0.6
         - 3.2.0-pre.1
         - 3.2.0-pre.2
+        - 3.2.0-pre.3
         - 4.0.0-pre.1
         compatible:
         - 3.0.6
         - 3.2.0-pre.1
         - 3.2.0-pre.2
+        - 3.2.0-pre.3
         verified: 3.0.6
       dependencies:
       - name: com.unity.ugui
@@ -1477,6 +1573,7 @@ m_PackageAssets:
         - 1.7.0-pre.1
         - 1.7.0-pre.2
         - 1.7.0
+        - 1.7.1
         compatible:
         - 1.4.8
         - 1.5.0-pre.2
@@ -1504,6 +1601,7 @@ m_PackageAssets:
         - 1.7.0-pre.1
         - 1.7.0-pre.2
         - 1.7.0
+        - 1.7.1
         verified: 1.4.8
       dependencies:
       - name: com.unity.modules.director
@@ -3991,6 +4089,7 @@ m_PackageAssets:
         - 2.0.0
         - 2.0.1-preview.1
         - 2.0.2
+        - 3.0.1
         compatible:
         - 1.0.0-preview.2
         - 1.0.0-preview.3
@@ -4003,6 +4102,7 @@ m_PackageAssets:
         - 2.0.0
         - 2.0.1-preview.1
         - 2.0.2
+        - 3.0.1
         verified: 2.0.2
       dependencies: []
       resolvedDependencies: []
@@ -4059,6 +4159,7 @@ m_PackageAssets:
         - 1.1.0-pre.11
         - 1.1.0-pre.41
         - 1.1.0-pre.69
+        - 1.2.0
         compatible:
         - 1.0.1
         - 1.1.0-pre.7
@@ -4068,6 +4169,7 @@ m_PackageAssets:
         - 1.1.0-pre.11
         - 1.1.0-pre.41
         - 1.1.0-pre.69
+        - 1.2.0
         verified: 1.0.1
       dependencies:
       - name: com.unity.modules.unitywebrequest

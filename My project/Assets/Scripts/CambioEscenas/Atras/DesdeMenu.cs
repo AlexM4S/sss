@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class DesdeMenu : MonoBehaviour
 {
+    // Este script contiene la función que permite cargar la escena menú
     public void BackMenu()
     {
         SceneManager.LoadScene("Menu");

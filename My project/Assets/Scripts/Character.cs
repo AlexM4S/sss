@@ -16,6 +16,8 @@ public enum HitZ { Forward, Mid, Backward, None }
 public class Character : MonoBehaviour
 {
 
+    // Este script define y controla casi por completo al Player y todo lo que este contiene (colisiones, animaciones, movimiento...)
+
     public SIDE m_Side = SIDE.Mid;
     
     [HideInInspector]
@@ -42,7 +44,7 @@ public class Character : MonoBehaviour
     public Text HighScore;
    
 
-
+    // El en start se definen tanto la posición inicial del Player como sus dimensiones, se llaman a las componentes Animator y CharacterController y muestra las puntuaciones durante el juego
     void Start()
     {
         m_char = GetComponent<CharacterController>();
@@ -58,20 +60,23 @@ public class Character : MonoBehaviour
 
     
         
-   
     void Update()
     {
+        // Si no es game over se ejecuta toda la función
 
         if(GameManager.sharedInstance.isGameOver)
         {
             return;
         }
 
+        // Control del movimento del Player 
 
         SwipeLeft = Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow);
         SwipeRight = Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow);
         SwipeUp = Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow);
         SwipeDown = Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow);
+
+        // Convertir el posición del Player en un número entero y guardarlo para tener un campo de puntuación máxima alcanzada
 
         int number = Mathf.FloorToInt(transform.position.z);
         Score.text = number.ToString();
@@ -84,7 +89,7 @@ public class Character : MonoBehaviour
             HighScore.text = number.ToString();
         }
 
-
+        // Movimiento de animación y tambaleo del jugador a moverse hacia la izquierda y los límites
 
         if (SwipeLeft&& !InRoll)
         {
@@ -111,8 +116,10 @@ public class Character : MonoBehaviour
             }
             
         }
+
+        // Movimiento de animación y tambaleo del jugador a moverse hacia la derecha y los límites
+
         else if (SwipeRight&& !InRoll)
-        
         {
             if (m_Side == SIDE.Mid)
             {
@@ -145,6 +152,7 @@ public class Character : MonoBehaviour
         
     }
 
+    // Lógica del salto
     public void Jump()
     {
         if (m_char.isGrounded)
@@ -172,6 +180,7 @@ public class Character : MonoBehaviour
 
     internal float RollCounter;
 
+    // Lógica de la acción de rodar
     public void Roll()
     {
         RollCounter -= Time.deltaTime;

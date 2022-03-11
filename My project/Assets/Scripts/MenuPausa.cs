@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MenuPausa : MonoBehaviour
 {
+    // Este script es el que se ocupa de que funcione correctamente el botón de pausa del juego, y su menú
 
     [SerializeField] private GameObject botonPausa;
     [SerializeField] private GameObject menuPausa;
